@@ -1,6 +1,6 @@
 ﻿namespace SimpleProgrammingLanguage;
 
-partial class Form1
+partial class Canvas
 {
     /// <summary>
     ///  Required designer variable.
@@ -144,7 +144,7 @@ partial class Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(916, 450);
+        ClientSize = new Size(982, 486);
         Controls.Add(lbCmdView);
         Controls.Add(btnClearCmd);
         Controls.Add(btnClearProg);
@@ -157,7 +157,7 @@ partial class Form1
         Controls.Add(btnImportProg);
         Controls.Add(txtCmd);
         Name = "Form1";
-        Text = "#'#'";
+        Text = "Canvas";
         ((System.ComponentModel.ISupportInitialize)pbCanvas).EndInit();
         ResumeLayout(false);
         PerformLayout();
