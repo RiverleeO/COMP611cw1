@@ -17,21 +17,22 @@ namespace SimpleProgrammingLanguage
         }
 
         private Dictionary<string, CommandBase> commandBase = new Dictionary<string, CommandBase>
-    {
-        { "PEN", new PenCmd() },
-        { "DRAWTO", new DrawTo() },
-        { "MOVETO", new MoveTo() },
-        { "FILL", new Fill() },
-        { "CLEAR", new Clear() },
-        { "RESET", new Reset() }
-    };
+        {
+            { "PEN", new PenCmd() },
+            { "DRAWTO", new DrawTo() },
+            { "MOVETO", new MoveTo() },
+            { "FILL", new Fill() },
+            { "CLEAR", new Clear() },
+            { "RESET", new Reset() }
+        };
 
         private Dictionary<string, Commands.Shapes.ShapesBase> shapesBase = new Dictionary<string, Commands.Shapes.ShapesBase>
-    {
-        { "CIRCLE", new Commands.Shapes.Circle() },
-        { "RECTANGLE", new Commands.Shapes.Rectangle() },
-        { "TRIANGLE", new Commands.Shapes.Triangle() }
-    };
+        {
+            { "CIRCLE", new Commands.Shapes.Circle() },
+            { "RECTANGLE", new Commands.Shapes.Rectangle() },
+            { "SQUARE", new Commands.Shapes.Square() },
+            { "TRIANGLE", new Commands.Shapes.Triangle() }
+        };
 
         public void ExecPenDrawing(CommandParser parser)
         {
@@ -49,6 +50,7 @@ namespace SimpleProgrammingLanguage
                         break;
                     case "CIRCLE":
                     case "RECTANGLE":
+                    case "SQUARE":
                     case "TRIANGLE":
                         shapesBase[parser.Cmd.ToUpper()].ExecuteCommand(graphics, parser.Args, canvas);
                         break;
