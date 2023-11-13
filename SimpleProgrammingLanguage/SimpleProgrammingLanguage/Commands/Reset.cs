@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 
 namespace SimpleProgrammingLanguage.Commands
 {
-    internal class Reset : CommandBase
+    /// <summary>
+    /// A command that resets the pen position to the default value on the canvas.
+    /// </summary>
+    public class Reset : CommandBase
     {
+        /// <summary>
+        /// Executes the 'reset' command which resets the pen position.
+        /// </summary>
+        /// <param name="canvas">The canvas on which the pen is reset to the default position.</param>
+        /// <param name="args">No arguments are required for this command.</param>
         public override void ExecuteCommand(Canvas canvas, string[] args)
         {
-
+            canvas.PenPosition = new Point(40, 40);
         }
     }
 }
