@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,15 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a circle on the canvas.
     /// </summary>
-    public class Circle : ShapesBase
+    public class Circle : ShapesParser
     {
         /// <summary>
-        /// Executes the circle command, drawing a circle on the canvas with the given radius value.
+        /// A boolean to represent as to whether or not an error has occured.
+        /// </summary>
+        public bool error;
+
+        /// <summary>
+        /// Executes the 'circle' command, drawing a circle on the canvas with the given radius value.
         /// </summary>
         /// <param name="graphics">A graphics object that is used to draw the circle.</param>
         /// <param name="args">A command argument which gets the radius for the circle.</param>
@@ -48,11 +54,13 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
 
                     // Clears the command text box
                     commandBox.Clear();
+                    error = false;
                 }
                 else
                 {
                     // Throws an error message if a valid radius value is not entered
                     MessageBox.Show("An error occurred when parsing arguments for the 'CIRCLE' command. You must enter a valid radius value.", "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    error = true;
                 }
             }
         }
