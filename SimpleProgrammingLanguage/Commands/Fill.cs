@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command to enable or disable the fill mode option.
     /// </summary>
-    internal class Fill : CommandBase
+    public class Fill : BaseCommandParser
     {
         /// <summary>
-        /// Executes the fill command.
+        /// Executes the 'fill' command.
         /// </summary>
         /// <param name="canvas">The canvas which fill mode is toggled.</param>
         /// <param name="args">A command argument which gets the selected value (on or off) to toggle the fill option.</param>
