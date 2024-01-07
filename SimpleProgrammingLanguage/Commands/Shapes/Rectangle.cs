@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,10 +11,15 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a rectangle on the canvas.
     /// </summary>
-    internal class Rectangle : ShapesBase
+    public class Rectangle : ShapesParser
     {
         /// <summary>
-        /// Executes the rectangle command, drawing a rectangle on the canvas with the given width and height values.
+        /// A boolean to represent as to whether or not an error has occured.
+        /// </summary>
+        public bool error;
+
+        /// <summary>
+        /// Executes the 'rectangle' command, drawing a rectangle on the canvas with the given width and height values.
         /// </summary>
         /// <param name="graphics">A graphics object that is used to draw the rectangle.</param>
         /// <param name="args">A command argument which gets the width and height values of the rectangle.</param>
@@ -35,12 +41,12 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
                     // Checks if the filling option has been enabled or disabled (disabled by default)
                     if (!canvas.Filling)
                     {
-                        // Draws the circle without any fill
+                        // Draws the rectangle without any fill
                         graphics.DrawRectangle(drawPen, x, y, width, height);
                     }
                     else
                     {
-                        // Draws the circle with a solid fill
+                        // Draws the rectangle with a solid fill
                         using (SolidBrush brush = new SolidBrush(canvas.FillColour))
                         {
                             graphics.FillRectangle(brush, x, y, width, height);
@@ -49,18 +55,22 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
 
                     // Clears the command text box
                     commandBox.Clear();
+                    error = false;
                 }
                 else
                 {
                     // Shows an error message if the width and height entered are not valid integers
                     MessageBox.Show("An error occurred when parsing arguments for the 'RECTANGLE' command. You must enter a valid width and height.", "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    error = true;
                 }
             }
             else
             {
                 // Shows an error message if there are no arguments, or only one
                 MessageBox.Show("An error occurred when parsing arguments for the 'RECTANGLE' command. You must enter a valid width and height.", "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error = true;
             }
         }
     }
 }
+
