@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -10,8 +11,13 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command which allows the changing of the pen colour.
     /// </summary>
-    public class PenCmd : CommandBase
+    public class PenCmd : BaseCommandParser
     {
+        /// <summary>
+        /// A boolean to represent as to whether or not an error has occured.
+        /// </summary>
+        public bool error = false;
+
         /// <summary>
         /// Executes the 'pen' command with the string argument.
         /// </summary>
@@ -52,6 +58,7 @@ namespace SimpleProgrammingLanguage.Commands
                         break;
                     default:
                         MessageBox.Show("An error occurred. '" + colourArgs + "' is not a valid colour. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        error = true;
                         return;
                 }
 
@@ -61,6 +68,7 @@ namespace SimpleProgrammingLanguage.Commands
             else
             {
                 MessageBox.Show("An error occurred whilst selecting a colour. Please select a valid colour.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error = true;
                 return;
             }
             commandBox.Clear();
