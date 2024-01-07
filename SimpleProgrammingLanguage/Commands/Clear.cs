@@ -1,14 +1,17 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage.Commands;
+using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleProgrammingLanguage.Commands;
-/// <summary>
-/// A command that clears the canvas.
-/// </summary>
-internal class Clear : CommandBase
+namespace SimpleProgrammingLanguage.Commands
+{
+    /// <summary>
+    /// A class that represents the Clear command that clears the canvas.
+    /// </summary>
+    public class Clear : BaseCommandParser
     {
         /// <summary>
         /// Executes the 'clear' command which removes all drawings from the canvas.
@@ -18,6 +21,8 @@ internal class Clear : CommandBase
         public override void ExecuteCommand(Canvas canvas, string[] args)
         {
             canvas.CanvasBox.Invalidate();
+            TextBox commandBox = canvas.CommandBox;
+            commandBox.Clear();
         }
     }
 }
