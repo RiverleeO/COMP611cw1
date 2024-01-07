@@ -1,17 +1,22 @@
-﻿using SimpleProgrammingLanguage.Commands;
+﻿using SimpleProgrammingLanguage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandPenDraw.Commands
+namespace SimpleProgrammingLanguage.Commands
 {
     /// <summary>
     /// A command that draws a line from the pen's current position to a specified destination.
     /// </summary>
-    internal class DrawTo : CommandBase
+    public class DrawTo : BaseCommandParser
     {
+        /// <summary>
+        /// A boolean to represent as to whether or not an error has occured.
+        /// </summary>
+        public bool error;
+
         /// <summary>
         /// Executes the 'drawTo' command using the X Y coordinate arguments.
         /// </summary>
@@ -32,15 +37,18 @@ namespace CommandPenDraw.Commands
 
                     canvas.PenPosition = point;
                     canvas.CommandBox.Clear();
+                    error = false;
                 }
                 else
                 {
                     MessageBox.Show("An error occurred when parsing arguments for the 'DRAWTO' command. Please input valid coordinates.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    error = true;
                 }
             }
             else
             {
                 MessageBox.Show("An error occurred when parsing the 'DRAWTO' command. Please try again.", "Argument Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error = true;
             }
         }
     }
