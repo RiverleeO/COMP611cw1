@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleProgrammingLanguage;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,10 +11,15 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a triangle on the canvas.
     /// </summary>
-    internal class Triangle : ShapesBase
+    public class Triangle : ShapesParser
     {
         /// <summary>
-        /// Executes the triangle command, drawing a triangle on the canvas with the given side length values.
+        /// A boolean to represent as to whether or not an error has occured.
+        /// </summary>
+        public bool error;
+
+        /// <summary>
+        /// Executes the 'triangle' command, drawing a triangle on the canvas with the given side length value.
         /// </summary>
         /// <param name="graphics">A graphics object that is used to draw the triangle.</param>
         /// <param name="args">A command argument which gets side length value of the triangle.</param>
@@ -41,12 +47,12 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
                     // Checks if the filling option has been enabled or disabled (disabled by default)
                     if (!canvas.Filling)
                     {
-                        // Draws the circle without any fill
+                        // Draws the triangle without any fill
                         graphics.DrawPolygon(drawPen, points);
                     }
                     else
                     {
-                        // Draws the circle with a solid fill
+                        // Draws the triangle with a solid fill
                         using (SolidBrush brush = new SolidBrush(canvas.FillColour))
                         {
                             graphics.FillPolygon(brush, points);
@@ -55,16 +61,20 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
 
                     // Clears the command text box
                     commandBox.Clear();
+                    error = false;
                 }
                 else
                 {
                     MessageBox.Show("An error occurred when parsing arguments for the 'TRIANGLE' command. You must enter a valid side length.", "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    error = true;
                 }
             }
             else
             {
                 MessageBox.Show("An error occurred when parsing arguments for the 'TRIANGLE' command. You must enter a valid side length.", "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error = true;
             }
         }
     }
 }
+
