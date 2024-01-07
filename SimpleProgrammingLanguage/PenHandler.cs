@@ -3,20 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleProgrammingLanguage.Commands
+using SimpleProgrammingLanguage.Commands;
+using SimpleProgrammingLanguage.Commands.Shapes;
+using SimpleProgrammingLanguage;
 
 namespace SimpleProgrammingLanguage
 {
+    /// <summary>
+    /// A class that represents the Pen Handler, responsible for executing commands on a specific canvas.
+    /// </summary>
     public class PenHandler
     {
         private Canvas canvas;
 
+        /// <summary>
+        /// Initialises a new instance of the PenHandler class with the specified canvas.
+        /// </summary>
+        /// <param name="canvas">The canvas that is being drawn on.</param>
         public PenHandler(Canvas canvas)
         {
             this.canvas = canvas;
         }
 
-        private Dictionary<string, CommandBase> commandBase = new Dictionary<string, CommandBase>
+        /// <summary>
+        /// A collection of pen and canvas commands.
+        /// </summary>
+        private Dictionary<string, Commands.BaseCommandParser> commandParser = new Dictionary<string, Commands.BaseCommandParser>
         {
             { "PEN", new PenCmd() },
             { "DRAWTO", new DrawTo() },
@@ -26,14 +38,21 @@ namespace SimpleProgrammingLanguage
             { "RESET", new Reset() }
         };
 
-        private Dictionary<string, Commands.Shapes.ShapesBase> shapesBase = new Dictionary<string, Commands.Shapes.ShapesBase>
+        /// <summary>
+        /// A collection of shape commands.
+        /// </summary>
+        private Dictionary<string, Commands.Shapes.ShapesParser> shapesParser = new Dictionary<string, Commands.Shapes.ShapesParser>
         {
             { "CIRCLE", new Commands.Shapes.Circle() },
             { "RECTANGLE", new Commands.Shapes.Rectangle() },
-
+            { "SQUARE", new Commands.Shapes.Square() },
             { "TRIANGLE", new Commands.Shapes.Triangle() }
         };
 
+        /// <summary>
+        /// A method that executes the pen and canvas commands, which are parsed by the command parser.
+        /// </summary>
+        /// <param name="parser"></param>
         public void ExecPenDrawing(CommandParser parser)
         {
             using (Graphics graphics = canvas.CanvasBox.CreateGraphics())
@@ -46,13 +65,13 @@ namespace SimpleProgrammingLanguage
                     case "FILL":
                     case "CLEAR":
                     case "RESET":
-                        commandBase[parser.Cmd.ToUpper()].ExecuteCommand(canvas, parser.Args);
+                        commandParser[parser.Cmd.ToUpper()].ExecuteCommand(canvas, parser.Args);
                         break;
                     case "CIRCLE":
                     case "RECTANGLE":
-
+                    case "SQUARE":
                     case "TRIANGLE":
-                        shapesBase[parser.Cmd.ToUpper()].ExecuteCommand(graphics, parser.Args, canvas);
+                        shapesParser[parser.Cmd.ToUpper()].ExecuteCommand(graphics, parser.Args, canvas);
                         break;
                     default:
                         MessageBox.Show("The command '" + parser.Cmd + "' could not be found. Please try again.", "Command Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
