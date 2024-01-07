@@ -41,12 +41,12 @@ namespace SimpleProgrammingLanguage
             lbCmdView = new ListBox();
             colorDialog1 = new ColorDialog();
             btnRunSingleCmd = new Button();
-            btnClearProg = new Button();
             btnClearCmd = new Button();
             label1 = new Label();
             lblCmdList = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            btnClearList = new Button();
             btnClearCanvas = new Button();
             ((System.ComponentModel.ISupportInitialize)pbCanvas).BeginInit();
             panel2.SuspendLayout();
@@ -58,6 +58,7 @@ namespace SimpleProgrammingLanguage
             txtCmd.Name = "txtCmd";
             txtCmd.Size = new Size(348, 23);
             txtCmd.TabIndex = 0;
+            txtCmd.KeyUp += txtCmd_KeyUp;
             // 
             // btnRunCmd
             // 
@@ -120,7 +121,6 @@ namespace SimpleProgrammingLanguage
             lbCmdView.Name = "lbCmdView";
             lbCmdView.Size = new Size(348, 514);
             lbCmdView.TabIndex = 8;
-            lbCmdView.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // btnRunSingleCmd
             // 
@@ -133,16 +133,6 @@ namespace SimpleProgrammingLanguage
             btnRunSingleCmd.UseVisualStyleBackColor = false;
             btnRunSingleCmd.Click += btnRunSingleCmd_Click;
             // 
-            // btnClearProg
-            // 
-            btnClearProg.BackColor = Color.Gainsboro;
-            btnClearProg.Location = new Point(389, 236);
-            btnClearProg.Name = "btnClearProg";
-            btnClearProg.Size = new Size(132, 23);
-            btnClearProg.TabIndex = 10;
-            btnClearProg.Text = "Clear Program";
-            btnClearProg.UseVisualStyleBackColor = false;
-            // 
             // btnClearCmd
             // 
             btnClearCmd.BackColor = Color.Gainsboro;
@@ -152,6 +142,7 @@ namespace SimpleProgrammingLanguage
             btnClearCmd.TabIndex = 11;
             btnClearCmd.Text = "Clear Command";
             btnClearCmd.UseVisualStyleBackColor = false;
+            btnClearCmd.Click += btnClearCmd_Click;
             // 
             // label1
             // 
@@ -164,7 +155,6 @@ namespace SimpleProgrammingLanguage
             label1.Size = new Size(241, 25);
             label1.TabIndex = 12;
             label1.Text = "Command Canvas Drawer";
-            label1.Click += label1_Click;
             // 
             // lblCmdList
             // 
@@ -175,7 +165,6 @@ namespace SimpleProgrammingLanguage
             lblCmdList.Size = new Size(85, 15);
             lblCmdList.TabIndex = 13;
             lblCmdList.Text = "Command List";
-            lblCmdList.Click += lblCmdList_Click;
             // 
             // panel1
             // 
@@ -188,13 +177,25 @@ namespace SimpleProgrammingLanguage
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(btnClearList);
             panel2.Controls.Add(btnClearCanvas);
             panel2.Controls.Add(btnRunCmd);
             panel2.Controls.Add(txtCmd);
             panel2.Location = new Point(-1, 47);
             panel2.Name = "panel2";
-            panel2.Size = new Size(532, 676);
+            panel2.Size = new Size(532, 628);
             panel2.TabIndex = 15;
+            // 
+            // btnClearList
+            // 
+            btnClearList.BackColor = Color.Gainsboro;
+            btnClearList.Location = new Point(390, 189);
+            btnClearList.Name = "btnClearList";
+            btnClearList.Size = new Size(132, 23);
+            btnClearList.TabIndex = 16;
+            btnClearList.Text = "Clear List";
+            btnClearList.UseVisualStyleBackColor = false;
+            btnClearList.Click += btnClearList_Click;
             // 
             // btnClearCanvas
             // 
@@ -204,16 +205,16 @@ namespace SimpleProgrammingLanguage
             btnClearCanvas.TabIndex = 16;
             btnClearCanvas.Text = "Clear Canvas";
             btnClearCanvas.UseVisualStyleBackColor = true;
+            btnClearCanvas.Click += btnClearCanvas_Click;
             // 
             // Canvas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1343, 710);
+            ClientSize = new Size(1602, 668);
             Controls.Add(lblCmdList);
             Controls.Add(label1);
             Controls.Add(btnClearCmd);
-            Controls.Add(btnClearProg);
             Controls.Add(btnRunSingleCmd);
             Controls.Add(lbCmdView);
             Controls.Add(btnRunProg);
@@ -243,12 +244,12 @@ namespace SimpleProgrammingLanguage
         private ListBox lbCmdView;
         private ColorDialog colorDialog1;
         private Button btnRunSingleCmd;
-        private Button btnClearProg;
         private Button btnClearCmd;
         private Label label1;
         private Label lblCmdList;
         private Panel panel1;
         private Panel panel2;
         private Button btnClearCanvas;
+        private Button btnClearList;
     }
 }
