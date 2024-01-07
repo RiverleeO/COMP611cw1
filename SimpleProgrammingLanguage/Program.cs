@@ -1,3 +1,5 @@
+using SimpleProgrammingLanguage;
+
 namespace SimpleProgrammingLanguage
 {
     internal static class Program
