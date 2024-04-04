@@ -1,0 +1,7 @@
+count = 2
+If count < 5
+	moveto 120 120
+	square 100
+	moveto 250 250
+	circle 50
+EndIf
