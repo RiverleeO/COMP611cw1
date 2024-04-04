@@ -35,7 +35,7 @@ namespace SimpleProgrammingLanguage
             txtCmd = new TextBox();
             btnRunCmd = new Button();
             btnSyntax = new Button();
-            btnImportProg = new Button();
+            btnImportCmdSet = new Button();
             pbCanvas = new PictureBox();
             btnRunProg = new Button();
             lbCmdView = new ListBox();
@@ -46,6 +46,11 @@ namespace SimpleProgrammingLanguage
             lblCmdList = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            lblLoadedProg = new Label();
+            btnProgEditor = new Button();
+            btnImportProg = new Button();
+            button2 = new Button();
+            button1 = new Button();
             btnClearList = new Button();
             btnClearCanvas = new Button();
             ((System.ComponentModel.ISupportInitialize)pbCanvas).BeginInit();
@@ -74,23 +79,23 @@ namespace SimpleProgrammingLanguage
             // btnSyntax
             // 
             btnSyntax.BackColor = Color.Gainsboro;
-            btnSyntax.Location = new Point(389, 117);
+            btnSyntax.Location = new Point(390, 117);
             btnSyntax.Name = "btnSyntax";
             btnSyntax.Size = new Size(132, 23);
             btnSyntax.TabIndex = 2;
             btnSyntax.Text = "Check Syntax";
             btnSyntax.UseVisualStyleBackColor = false;
             // 
-            // btnImportProg
+            // btnImportCmdSet
             // 
-            btnImportProg.BackColor = Color.Gainsboro;
-            btnImportProg.Location = new Point(389, 88);
-            btnImportProg.Name = "btnImportProg";
-            btnImportProg.Size = new Size(132, 23);
-            btnImportProg.TabIndex = 3;
-            btnImportProg.Text = "Import Program";
-            btnImportProg.UseVisualStyleBackColor = false;
-            btnImportProg.Click += btnImportProg_Click;
+            btnImportCmdSet.BackColor = Color.Gainsboro;
+            btnImportCmdSet.Location = new Point(390, 275);
+            btnImportCmdSet.Name = "btnImportCmdSet";
+            btnImportCmdSet.Size = new Size(132, 23);
+            btnImportCmdSet.TabIndex = 3;
+            btnImportCmdSet.Text = "Import Command Set";
+            btnImportCmdSet.UseVisualStyleBackColor = false;
+            btnImportCmdSet.Click += btnImportCmdSet_Click;
             // 
             // pbCanvas
             // 
@@ -105,13 +110,13 @@ namespace SimpleProgrammingLanguage
             // btnRunProg
             // 
             btnRunProg.BackColor = Color.Gainsboro;
-            btnRunProg.Location = new Point(389, 162);
+            btnRunProg.Location = new Point(390, 304);
             btnRunProg.Name = "btnRunProg";
             btnRunProg.Size = new Size(132, 23);
             btnRunProg.TabIndex = 7;
-            btnRunProg.Text = "Run Program";
+            btnRunProg.Text = "Run Command Set";
             btnRunProg.UseVisualStyleBackColor = false;
-            btnRunProg.Click += btnRunProg_Click;
+            btnRunProg.Click += btnRunCmdSet_Click;
             // 
             // lbCmdView
             // 
@@ -125,7 +130,7 @@ namespace SimpleProgrammingLanguage
             // btnRunSingleCmd
             // 
             btnRunSingleCmd.BackColor = Color.Gainsboro;
-            btnRunSingleCmd.Location = new Point(389, 191);
+            btnRunSingleCmd.Location = new Point(390, 333);
             btnRunSingleCmd.Name = "btnRunSingleCmd";
             btnRunSingleCmd.Size = new Size(132, 23);
             btnRunSingleCmd.TabIndex = 9;
@@ -136,7 +141,7 @@ namespace SimpleProgrammingLanguage
             // btnClearCmd
             // 
             btnClearCmd.BackColor = Color.Gainsboro;
-            btnClearCmd.Location = new Point(389, 265);
+            btnClearCmd.Location = new Point(390, 504);
             btnClearCmd.Name = "btnClearCmd";
             btnClearCmd.Size = new Size(132, 23);
             btnClearCmd.TabIndex = 11;
@@ -177,8 +182,18 @@ namespace SimpleProgrammingLanguage
             // panel2
             // 
             panel2.BackColor = Color.Gainsboro;
+            panel2.Controls.Add(lblLoadedProg);
+            panel2.Controls.Add(btnProgEditor);
+            panel2.Controls.Add(btnImportProg);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(button1);
             panel2.Controls.Add(btnClearList);
             panel2.Controls.Add(btnClearCanvas);
+            panel2.Controls.Add(btnRunSingleCmd);
+            panel2.Controls.Add(btnRunProg);
+            panel2.Controls.Add(btnSyntax);
+            panel2.Controls.Add(btnImportCmdSet);
+            panel2.Controls.Add(btnClearCmd);
             panel2.Controls.Add(btnRunCmd);
             panel2.Controls.Add(txtCmd);
             panel2.Location = new Point(-1, 47);
@@ -186,10 +201,59 @@ namespace SimpleProgrammingLanguage
             panel2.Size = new Size(532, 628);
             panel2.TabIndex = 15;
             // 
+            // lblLoadedProg
+            // 
+            lblLoadedProg.AutoSize = true;
+            lblLoadedProg.ForeColor = Color.Firebrick;
+            lblLoadedProg.Location = new Point(390, 172);
+            lblLoadedProg.Name = "lblLoadedProg";
+            lblLoadedProg.Size = new Size(119, 15);
+            lblLoadedProg.TabIndex = 21;
+            lblLoadedProg.Text = "No Programs Loaded";
+            // 
+            // btnProgEditor
+            // 
+            btnProgEditor.Location = new Point(390, 59);
+            btnProgEditor.Name = "btnProgEditor";
+            btnProgEditor.Size = new Size(132, 23);
+            btnProgEditor.TabIndex = 20;
+            btnProgEditor.Text = "Program Editor";
+            btnProgEditor.UseVisualStyleBackColor = true;
+            btnProgEditor.Click += btnProgEditor_Click;
+            // 
+            // btnImportProg
+            // 
+            btnImportProg.Location = new Point(390, 88);
+            btnImportProg.Name = "btnImportProg";
+            btnImportProg.Size = new Size(132, 23);
+            btnImportProg.TabIndex = 19;
+            btnImportProg.Text = "Import Program";
+            btnImportProg.UseVisualStyleBackColor = true;
+            btnImportProg.Click += btnImportProg_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(200, 303);
+            button2.Name = "button2";
+            button2.Size = new Size(132, 23);
+            button2.TabIndex = 18;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(390, 146);
+            button1.Name = "button1";
+            button1.Size = new Size(132, 23);
+            button1.TabIndex = 17;
+            button1.Text = "Run Program";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnRunProg_Click;
+            // 
             // btnClearList
             // 
             btnClearList.BackColor = Color.Gainsboro;
-            btnClearList.Location = new Point(390, 189);
+            btnClearList.Location = new Point(390, 475);
             btnClearList.Name = "btnClearList";
             btnClearList.Size = new Size(132, 23);
             btnClearList.TabIndex = 16;
@@ -214,13 +278,8 @@ namespace SimpleProgrammingLanguage
             ClientSize = new Size(1602, 668);
             Controls.Add(lblCmdList);
             Controls.Add(label1);
-            Controls.Add(btnClearCmd);
-            Controls.Add(btnRunSingleCmd);
             Controls.Add(lbCmdView);
-            Controls.Add(btnRunProg);
             Controls.Add(pbCanvas);
-            Controls.Add(btnImportProg);
-            Controls.Add(btnSyntax);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Name = "Canvas";
@@ -238,7 +297,7 @@ namespace SimpleProgrammingLanguage
         private TextBox txtCmd;
         private Button btnRunCmd;
         private Button btnSyntax;
-        private Button btnImportProg;
+        private Button btnImportCmdSet;
         private PictureBox pbCanvas;
         private Button btnRunProg;
         private ListBox lbCmdView;
@@ -251,5 +310,10 @@ namespace SimpleProgrammingLanguage
         private Panel panel2;
         private Button btnClearCanvas;
         private Button btnClearList;
+        private Button button2;
+        private Button button1;
+        private Button btnImportProg;
+        private Button btnProgEditor;
+        private Label lblLoadedProg;
     }
 }

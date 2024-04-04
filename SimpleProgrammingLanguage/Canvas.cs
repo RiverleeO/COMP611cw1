@@ -16,6 +16,7 @@ namespace SimpleProgrammingLanguage
         private Pen drawPen = new Pen(Color.Black);
         private bool filling = false;
         private Color fillColour = Color.Black;
+        private string progCont = "";
 
         public PenHandler penHandler;
 
@@ -82,18 +83,18 @@ namespace SimpleProgrammingLanguage
         }
 
         /// <summary>
-        /// Represents the button click event that allows for importing programs or a series of commands by triggerig the Open File Dialog.
+        /// Represents the button click event that allows for importing a series of commands by triggerig the Open File Dialog.
         /// </summary>
-        private void btnImportProg_Click(object sender, EventArgs e)
+        private void btnImportCmdSet_Click(object sender, EventArgs e)
         {
-            OpenFileDialog importProgram;
-            importProgram = new OpenFileDialog();
-            if (importProgram.ShowDialog() == DialogResult.OK)
+            OpenFileDialog importCmdSet;
+            importCmdSet = new OpenFileDialog();
+            if (importCmdSet.ShowDialog() == DialogResult.OK)
             {
-                string[] progLines = File.ReadAllLines(importProgram.FileName);
-                foreach (string progLine in progLines)
+                string[] cmdLines = File.ReadAllLines(importCmdSet.FileName);
+                foreach (string cmdLine in cmdLines)
                 {
-                    lbCmdView.Items.Add(progLine);
+                    lbCmdView.Items.Add(cmdLine);
                 }
             }
         }
@@ -145,7 +146,7 @@ namespace SimpleProgrammingLanguage
         /// <summary>
         /// Represents the button click event that executes a program or series of commands in the listbox.
         /// </summary>
-        private void btnRunProg_Click(object sender, EventArgs e)
+        private void btnRunCmdSet_Click(object sender, EventArgs e)
         {
             if (lbCmdView.Items.Count > 0)
             {
@@ -157,7 +158,7 @@ namespace SimpleProgrammingLanguage
             }
             else
             {
-                MessageBox.Show("You must import a program before attempting to compile.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You must import a Command Set before attempting to run.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -201,5 +202,61 @@ namespace SimpleProgrammingLanguage
         /// Represents the load event that runs the canvas graphical interface.
         /// </summary>
         private void Canvas_Load(object sender, EventArgs e) { }
+
+        private void btnProgEditor_Click(object sender, EventArgs e)
+        {
+            ProgramEditor progEditor = new ProgramEditor(this);
+            try
+            {
+                progEditor.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while attempting to open the program editor. /nException: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnRunProg_Click(object sender, EventArgs e)
+        {
+            ProgramHandler progHandler = new ProgramHandler(this);
+
+            try
+            {
+                progHandler.ExecuteProgram(progCont);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occured while attempting to open the run the program. /nException: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Represents the button click event that imports a program.
+        /// </summary>
+        private void btnImportProg_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openDialog = new OpenFileDialog())
+            {
+                openDialog.Filter = "Pen Program|*.prog";
+                openDialog.Title = "Open Program File";
+
+                if (openDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string progName = openDialog.FileName;
+
+                    try
+                    {
+                        progCont = File.ReadAllText(progName);
+                        lblLoadedProg.Text = $"Loaded {progName}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occured while attempting to open the program file. /nException: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        
     }
 }
