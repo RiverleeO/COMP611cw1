@@ -10,7 +10,7 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command to change the current position of the pen on the canvas.
     /// </summary>
-    public class MoveTo : BaseCommandParser
+    public class MoveTo : IBaseCommandParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -22,7 +22,7 @@ namespace SimpleProgrammingLanguage.Commands
         /// </summary>
         /// <param name="canvas">The canvas which the pen is moved on.</param>
         /// <param name="args">The arguments that specify the X Y coordinate values of the pen.</param>
-        public override void ExecuteCommand(Canvas canvas, string[] args)
+        public void ExecuteCommand(Canvas canvas, string[] args)
         {
             if (args.Length >= 2)
             {

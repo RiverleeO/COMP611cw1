@@ -10,7 +10,7 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command that draws a line from the pen's current position to a specified destination.
     /// </summary>
-    public class DrawTo : BaseCommandParser
+    public class DrawTo : IBaseCommandParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -22,7 +22,7 @@ namespace SimpleProgrammingLanguage.Commands
         /// </summary>
         /// <param name="canvas">The canvas which the line is drawn on.</param>
         /// <param name="args">The X Y arguments from the command.</param>
-        public override void ExecuteCommand(Canvas canvas, string[] args)
+        public void ExecuteCommand(Canvas canvas, string[] args)
         {
             if (args.Length >= 2)
             {

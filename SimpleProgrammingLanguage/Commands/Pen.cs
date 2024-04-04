@@ -11,7 +11,7 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command which allows the changing of the pen colour.
     /// </summary>
-    public class PenCmd : BaseCommandParser
+    public class PenCmd : IBaseCommandParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -23,7 +23,7 @@ namespace SimpleProgrammingLanguage.Commands
         /// </summary>
         /// <param name="canvas">The canvas on which the pen colour is changed.</param>
         /// <param name="args">The aguments for the pen colour.</param>
-        public override void ExecuteCommand(Canvas canvas, string[] args)
+        public void ExecuteCommand(Canvas canvas, string[] args)
         {
             TextBox commandBox = canvas.CommandBox;
             Pen drawPen = canvas.DrawPen;

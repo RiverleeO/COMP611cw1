@@ -11,7 +11,7 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A class that represents the command parser which is responsible for executing commands and arguments.
     /// </summary>
-    abstract public class BaseCommandParser
+    public interface IBaseCommandParser
     {
         /// <summary>
         /// A method that executes given commands and arguments.

@@ -10,14 +10,14 @@ namespace SimpleProgrammingLanguage.Commands
     /// <summary>
     /// A command to enable or disable the fill mode option.
     /// </summary>
-    public class Fill : BaseCommandParser
+    public class Fill : IBaseCommandParser
     {
         /// <summary>
         /// Executes the 'fill' command.
         /// </summary>
         /// <param name="canvas">The canvas which fill mode is toggled.</param>
         /// <param name="args">A command argument which gets the selected value (on or off) to toggle the fill option.</param>
-        public override void ExecuteCommand(Canvas canvas, string[] args)
+        public void ExecuteCommand(Canvas canvas, string[] args)
         {
             TextBox commandBox = canvas.CommandBox;
 
