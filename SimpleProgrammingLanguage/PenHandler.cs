@@ -28,7 +28,7 @@ namespace SimpleProgrammingLanguage
         /// <summary>
         /// A collection of pen and canvas commands.
         /// </summary>
-        private Dictionary<string, Commands.BaseCommandParser> commandParser = new Dictionary<string, Commands.BaseCommandParser>
+        private Dictionary<string, Commands.IBaseCommandParser> commandParser = new Dictionary<string, Commands.IBaseCommandParser>
         {
             { "PEN", new PenCmd() },
             { "DRAWTO", new DrawTo() },
