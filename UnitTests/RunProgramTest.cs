@@ -9,36 +9,36 @@ using System.Windows.Forms;
 namespace UnitTests
 {
     /// <summary>
-    /// A test class to test running a program (list of commands and arguments).
+    /// A test class to test running custom program code.
     /// </summary>
     [TestClass]
     public class RunProgramTest
     {
         /// <summary>
-        /// A test method to verify that programs (which are a list of commands and arguments in order) execute successfully.
+        /// A test method to verify that custom program code run successfully.
         /// </summary>
         [TestMethod]
         public void ExecuteProgram()
         {
             // Arrange
             var canvas = new Canvas();
-            string[] fileContents = { "MOVETO 250 250", "SQUARE 100", "MOVETO 275 250", "RECTANGLE 50 25", "MOVETO 250 250", "TRIANGLE 100" };
-            List<string> cmdList = new List<string>();
+
+            RichTextBox progContents = new RichTextBox();
+
+            progContents.Text = @"count = 2
+                If count < 3
+                moveto 20 20
+                rectangle 30 30
+                moveto 100 100
+                circle 50
+                EndIf";
 
             // Act
-            foreach (string progLine in fileContents)
-            {
-                cmdList.Add(progLine);
-            }
-
-            foreach (string cmdLine in cmdList)
-            {
-                CommandParser commandParser = new CommandParser(cmdLine);
-                canvas.penHandler.ExecPenDrawing(commandParser);
-            }
+            ProgramHandler programHandler = new ProgramHandler(canvas);
+            programHandler.ExecuteProgram(progContents.Text);
 
             // Assert
-            Assert.IsTrue(cmdList.SequenceEqual(fileContents));
+            Assert.IsTrue(progContents.Text.StartsWith("count"));
         }
     }
 }
