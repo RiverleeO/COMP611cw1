@@ -41,7 +41,7 @@ namespace SimpleProgrammingLanguage
         /// <summary>
         /// A collection of shape commands.
         /// </summary>
-        private Dictionary<string, Commands.Shapes.ShapesParser> shapesParser = new Dictionary<string, Commands.Shapes.ShapesParser>
+        private Dictionary<string, Commands.Shapes.IShapesParser> shapesParser = new Dictionary<string, Commands.Shapes.IShapesParser>
         {
             { "CIRCLE", new Commands.Shapes.Circle() },
             { "RECTANGLE", new Commands.Shapes.Rectangle() },
