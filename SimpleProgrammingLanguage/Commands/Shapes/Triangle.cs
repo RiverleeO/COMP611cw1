@@ -11,7 +11,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a triangle on the canvas.
     /// </summary>
-    public class Triangle : ShapesParser
+    public class Triangle : IShapesParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -24,7 +24,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
         /// <param name="graphics">A graphics object that is used to draw the triangle.</param>
         /// <param name="args">A command argument which gets side length value of the triangle.</param>
         /// <param name="canvas">The canvas which the triangle is drawn on.</param>
-        public override void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
+        public void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
         {
             Point penPosition = canvas.PenPosition;
             Pen drawPen = canvas.DrawPen;

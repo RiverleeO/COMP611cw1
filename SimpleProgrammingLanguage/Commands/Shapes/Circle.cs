@@ -10,7 +10,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a circle on the canvas.
     /// </summary>
-    public class Circle : ShapesParser
+    public class Circle : IShapesParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -23,7 +23,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
         /// <param name="graphics">A graphics object that is used to draw the circle.</param>
         /// <param name="args">A command argument which gets the radius for the circle.</param>
         /// <param name="canvas">The canvas which the circle is drawn on.</param>
-        public override void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
+        public void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
         {
             Point penPosition = canvas.PenPosition;
             Pen pen = canvas.DrawPen;

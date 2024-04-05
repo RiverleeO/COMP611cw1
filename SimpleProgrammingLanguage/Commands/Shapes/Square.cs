@@ -10,7 +10,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A command to draw a square on the canvas.
     /// </summary>
-    public class Square : ShapesParser
+    public class Square : IShapesParser
     {
         /// <summary>
         /// A boolean to represent as to whether or not an error has occured.
@@ -23,7 +23,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
         /// <param name="graphics">A graphics object that is used to draw the square.</param>
         /// <param name="args">A command argument which gets the width and height values of the square.</param>
         /// <param name="canvas">The canvas which the square is drawn on.</param>
-        public override void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
+        public void ExecuteCommand(Graphics graphics, string[] args, Canvas canvas)
         {
             Point penPosition = canvas.PenPosition;
             Pen drawPen = canvas.DrawPen;

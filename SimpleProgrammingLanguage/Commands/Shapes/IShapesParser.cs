@@ -10,7 +10,7 @@ namespace SimpleProgrammingLanguage.Commands.Shapes
     /// <summary>
     /// A class that represents the shapes command parser which is responsible for executing commands and arguments related to shapes.
     /// </summary>
-    abstract public class ShapesParser
+    public interface IShapesParser
     {
         /// <summary>
         ///  A method that executes given commands and arguments specific to graphics.
