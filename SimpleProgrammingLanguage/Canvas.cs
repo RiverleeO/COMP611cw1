@@ -216,6 +216,9 @@ namespace SimpleProgrammingLanguage
             }
         }
 
+        /// <summary>
+        /// Represents the button click event that runs the currently loaded program.
+        /// </summary>
         private async void btnRunProg_Click(object sender, EventArgs e)
         {
             ProgramHandler progHandler = new ProgramHandler(this);
